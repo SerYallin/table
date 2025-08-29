@@ -1,0 +1,25 @@
+@use '@styles/mixins' as mixins;
+@use '@styles/variables' as vars;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  background-color: vars.$gray;
+}
+
+.header {
+  @include mixins.grid-table(var(--columns-count));
+  position: relative;
+  text-align: center;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+}

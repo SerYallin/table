@@ -1,0 +1,13 @@
+@use '@styles/variables' as vars;
+
+@mixin grid-table($columns: 1) {
+  display: grid;
+  grid-template-columns: 40px repeat($columns, 1fr);
+  gap: 2px;
+  background-color: vars.$gray;
+
+  span {
+    padding: 8px;
+    background-color: vars.$white;
+  }
+}

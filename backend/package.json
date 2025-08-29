@@ -1,0 +1,63 @@
+{
+  "name": "table",
+  "version": "0.0.1",
+  "description": "This is a eample project for table manipulations",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "nodemon",
+    "test": "test",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "stylelint": "stylelint \"src/**/*.{scss,css}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerYallin/table.git"
+  },
+  "keywords": [
+    "Test",
+    "Sample",
+    "Expample",
+    "Search",
+    "Manipulation"
+  ],
+  "author": "SerhiiYallin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SerYallin/table/issues"
+  },
+  "homepage": "https://github.com/SerYallin/table#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.3.2",
+    "@eslint/js": "^9.34.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
+    "eslint-config-airbnb-extended": "^2.2.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "sass": "^1.91.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^15.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  }
+}

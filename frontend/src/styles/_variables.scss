@@ -1,0 +1,37 @@
+@use 'sass:color';
+
+// Resolutions
+$tablet: 768px;
+$desktop: 1024px;
+$large: 1280px;
+
+// Colors
+$primary: #ffca42;
+$primary-hover: #ffe071;
+$primary-active: #f1c012;
+$secondary: #cee5ff;
+$secondary-hover: #a1cdff;
+$secondary-active: #5795dd;
+$text: #181d51;
+$text5: color.change(#181d51, $alpha: 5%);
+$text10: color.change(#181d51, $alpha: 10%);
+$text25: color.change(#181d51, $alpha: 25%);
+$text35: color.change(#181d51, $alpha: 35%);
+$text50: color.change(#181d51, $alpha: 35%);
+$text80: color.change(#181d51, $alpha: 80%);
+$text-disable: #999999;
+$tertiary: $text5;
+$tertiary-hover: $text10;
+$tertiary-active: $text25;
+$blue: #2f67f8;
+$blue-hover: #1f53d7;
+$white: #ffffff;
+$red: #f62434;
+$violet: #9747ff;
+$green: #00B956;
+$light-green: #DDFFEC;
+$gray: #ededed;
+
+// Fonts
+$main-font-family: 'Lato', sans-serif;
+$color-scheme: light dark;

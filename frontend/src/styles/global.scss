@@ -1,0 +1,54 @@
+@use 'variables' as vars;
+@use 'fonts/fonts';
+
+:root {
+  font-weight: 400;
+  font-family: vars.$main-font-family;
+  line-height: 1.5;
+  color-scheme: vars.$color-scheme;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  color: vars.$text;
+  background-color: #d4d4d4;
+}
+
+
+header {
+  text-align: center;
+}
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  font-size: inherit;
+  font-family: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+}
+
+.active {
+  z-index: 1;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}

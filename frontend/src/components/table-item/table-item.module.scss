@@ -1,0 +1,15 @@
+@use '@styles/mixins' as mixins;
+
+.item {
+  @include mixins.grid-table(var(--columns-count));
+
+  &:hover {
+    background-color: #9747ff;
+  }
+  user-select: none;
+
+  * {
+    user-select: none;
+    pointer-events: none;
+  }
+}

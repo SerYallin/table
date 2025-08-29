@@ -1,0 +1,55 @@
+import { NumbersItem, Operators } from '../types';
+import { getRandoms } from '../utils/getRandoms';
+import { filterNumber } from '../utils/filterNumber';
+
+class NumbersModel {
+  protected items: NumbersItem[];
+  protected selected: number[];
+  protected readonly limit: number = 20;
+
+  constructor() {
+    this.items = getRandoms(100);
+    this.selected = [];
+  }
+
+  getItems(page?: number, op?: Operators, value?: number) {
+    const items = this._getFilteredItems(op, value);
+    if (page) {
+      const startIndex = this._getStartIndex(page || 1);
+      const endIndex = startIndex + this.limit;
+      return items.slice(startIndex, endIndex);
+    } else {
+      return items;
+    }
+  }
+
+  getTotal(op?: Operators, value?: number) {
+    const items = this._getFilteredItems(op, value);
+    return items.length;
+  }
+
+  getSelected() {
+    return this.selected;
+  }
+
+  updateSelected(items: number[]) {
+    this.selected = items;
+  }
+
+  updateItems(items: NumbersItem[]) {
+    if (items.length) {
+      this.items.splice(0, items.length, ...items);
+    }
+  }
+
+  private _getStartIndex(page: number) {
+    return (page - 1) * this.limit;
+  }
+  private _getFilteredItems(op?: Operators, value?: number) {
+    return this.items.filter((item) => filterNumber(item, op || Operators.EQUAL, value || 0));
+  }
+}
+
+const numbersModel = new NumbersModel();
+
+export default numbersModel;
