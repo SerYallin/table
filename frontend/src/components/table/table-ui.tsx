@@ -1,11 +1,11 @@
-import React from 'react';
+import { forwardRef, CSSProperties } from 'react';
 import { TableItem } from '@components/table-item';
 import styles from './table.module.scss';
 import type { TTableUiProps } from './types';
 
-export const TableUi = React.forwardRef<HTMLUListElement, TTableUiProps>(
+export const TableUi = forwardRef<HTMLUListElement, TTableUiProps>(
   ({ title, items, onHeaderClick, onSelect, selectedItems }, ref) => {
-    const style: React.CSSProperties & {
+    const style: CSSProperties & {
       '--columns-count'?: number;
     } = {
       '--columns-count': items?.length ? Object.keys(items[0]).length : 0,
@@ -13,7 +13,7 @@ export const TableUi = React.forwardRef<HTMLUListElement, TTableUiProps>(
     return (
       <div className={styles.container} style={style}>
         {title && <div className={styles.title} />}
-        {items && items.length > 0 && (
+        {items && items.length && (
           <>
             <div className={styles.header}>
               <span />
@@ -38,15 +38,18 @@ export const TableUi = React.forwardRef<HTMLUListElement, TTableUiProps>(
               ))}
             </div>
             <ul ref={ref} className={styles.items}>
-              {items.map((item, index) => (
-                <TableItem
-                  key={item.id}
-                  index={index}
-                  onSelect={onSelect}
-                  isSelected={selectedItems?.includes(item.id as number)}
-                  item={item}
-                />
-              ))}
+              {items.map(
+                (item, index) =>
+                  item && (
+                    <TableItem
+                      key={item.id}
+                      index={index}
+                      onSelect={onSelect}
+                      isSelected={selectedItems?.includes(item.id)}
+                      item={item}
+                    />
+                  )
+              )}
             </ul>
           </>
         )}

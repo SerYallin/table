@@ -1,44 +1,53 @@
-import { observer } from 'mobx-react';
-import tableStore from '@services/stores/table-store';
-import { Table } from '@components/table';
+import { observer, inject } from 'mobx-react';
 import { useEffect, useRef } from 'react';
 import { NumbersItem } from '@app/types';
+import styles from './num-table.module.scss';
+import { Table } from '@components/table';
 
-export const NumTable = observer(() => {
-  const { items, selectedItems, total } = tableStore;
-  const refTable = useRef<HTMLDivElement>(null);
-  const scrollHandler = () => {
-    if (
-      refTable.current &&
-      window.pageYOffset + window.innerHeight >= refTable.current.offsetTop
-    ) {
-      tableStore.getNextPage();
-    }
-  };
-  const headerClickHandler = (name: string) => {
-    tableStore.setSorting(name);
-  };
-  const selectHandler = (id: number) => {
-    tableStore.updateSelected(id);
-  };
-  const handleDrufItems = (Items: NumbersItem[]) => {
-    tableStore.updateSortItems(Items);
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', scrollHandler);
+export const NumTable = inject('tableStore')(
+  observer(({ tableStore }) => {
+    const { items, selectedItems, total } = tableStore;
+    const refTable = useRef<HTMLDivElement>(null);
+    const isLoadingRef = useRef(false);
+    const scrollHandler = async () => {
+      if (
+        refTable.current &&
+        window.pageYOffset + window.innerHeight >= refTable.current.offsetTop &&
+        !isLoadingRef.current
+      ) {
+        isLoadingRef.current = true;
+        tableStore.getNextPage().finally(() => {
+          setTimeout(() => {
+            isLoadingRef.current = false;
+          }, 200);
+        });
+      }
+    };
+    const headerClickHandler = async (name: string) => {
+      await tableStore.setSorting(name);
+    };
+    const selectHandler = async (id: number) => {
+      await tableStore.updateSelected(id);
+    };
+    const handleDrufItems = async (Items: NumbersItem[]) => {
+      await tableStore.updateSortItems(Items);
+    };
+    useEffect(() => {
+      window.addEventListener('scroll', scrollHandler);
 
-    return () => window.removeEventListener('scroll', scrollHandler);
-  }, []);
-  return (
-    <>
-      <Table
-        items={items}
-        onHeaderClick={headerClickHandler}
-        onSelect={selectHandler}
-        onDrugItems={handleDrufItems}
-        selectedItems={selectedItems}
-      />
-      {total > items.length && <div ref={refTable} />}
-    </>
-  );
-});
+      return () => window.removeEventListener('scroll', scrollHandler);
+    }, []);
+    return (
+      <div className={styles.wrapper}>
+        <Table
+          items={items}
+          onHeaderClick={headerClickHandler}
+          onSelect={selectHandler}
+          selectedItems={selectedItems}
+          updateItems={handleDrufItems}
+        />
+        {total > items.length && <div ref={refTable} />}
+      </div>
+    );
+  })
+);

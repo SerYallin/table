@@ -38,7 +38,17 @@ class NumbersModel {
 
   updateItems(items: NumbersItem[]) {
     if (items.length) {
-      this.items.splice(0, items.length, ...items);
+      const indexed: number[] = [];
+      this.items.forEach((item, index) => {
+        if (items.some((i) => i.id === item.id)) {
+          indexed.push(index);
+        }
+      });
+      indexed.forEach((index, i) => {
+        if (items[i]) {
+          this.items[index] = items[i];
+        }
+      });
     }
   }
 

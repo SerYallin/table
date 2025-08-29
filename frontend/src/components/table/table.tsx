@@ -5,13 +5,11 @@ import { TableUi } from './table-ui';
 
 export const Table: React.FC<TTableProps> = ({
   items,
-  onDrugItems,
+  updateItems,
   ...rest
 }) => {
   // положение курсора для перетаскивания
   const [yPos, setYPos] = React.useState(0);
-  // индекс элемента, который мы перетаскиваем
-  const [tableItems, setTableItems] = React.useState(items);
   // индекс элемента, на который мы перемещаем
   const [newIndex, setNewIndex] = React.useState(0);
   // элемент, который мы перетаскиваем
@@ -82,43 +80,23 @@ export const Table: React.FC<TTableProps> = ({
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
-    return () => {
-      document.removeEventListener('mousedown', onMouseDown);
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-  }, [isDrug]);
 
-  React.useEffect(() => {
-    if (items !== tableItems) {
-      setTableItems(items);
-    }
-  }, [items]);
-
-  React.useEffect(() => {
-    if (!isDrug && tableItems?.length && newIndex !== drugIndex) {
-      const newItems = [...tableItems];
+    if (!isDrug && items && items.length && newIndex !== drugIndex) {
+      const newItems = [...items];
       const [removed] = newItems.splice(drugIndex, 1);
       newItems.splice(newIndex, 0, removed);
-      setTableItems(newItems);
+      updateItems(newItems as NumbersItem[]);
       doUpdate.current = true;
       refUl.current?.querySelectorAll('li[style]').forEach((el) => {
         el.removeAttribute('style');
         el.removeAttribute('data-transform');
       });
     }
+    return () => {
+      document.removeEventListener('mousedown', onMouseDown);
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
   }, [isDrug]);
-
-  React.useEffect(() => {
-    if (
-      doUpdate.current &&
-      items !== tableItems &&
-      typeof onDrugItems === 'function'
-    ) {
-      onDrugItems(tableItems as NumbersItem[]);
-      doUpdate.current = true;
-    }
-  }, [tableItems]);
-
-  return <TableUi ref={refUl} items={tableItems} {...rest} />;
+  return <TableUi ref={refUl} items={items} {...rest} />;
 };

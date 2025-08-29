@@ -13,6 +13,8 @@
   @include mixins.grid-table(var(--columns-count));
   position: relative;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .items {

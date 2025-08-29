@@ -1,13 +1,14 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/global.scss';
 import { App } from '@components/app';
+import { Provider } from 'mobx-react';
+import tableStore from '@services/stores/table-store';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Provider tableStore={tableStore}>
       <App />
-    </BrowserRouter>
-  </StrictMode>
+    </Provider>
+  </BrowserRouter>
 );

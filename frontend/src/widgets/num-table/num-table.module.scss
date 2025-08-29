@@ -1,0 +1,7 @@
+@use '@styles/variables' as *;
+.wrapper {
+  outline: solid 1px $gray;
+  box-shadow: inset 2px 2px 5px rgba($text, 0.9);
+  background-color: #f0f0f0;
+  padding: 4px;
+}

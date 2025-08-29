@@ -1,7 +1,10 @@
-export type NumbersItem = {
+export type ItemType = {
+  [key: string]: string | number;
+};
+
+export type NumbersItem = ItemType & {
   id: number;
   value: number;
-  order?: number;
 };
 
 export type TOptions = {

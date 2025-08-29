@@ -1,7 +1,6 @@
 export type NumbersItem = {
   id: number;
   value: number;
-  order?: number;
 };
 
 export enum Operators {

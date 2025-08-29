@@ -1,8 +1,6 @@
-export type ItemType = {
-  [key: string]: string | number;
-};
+import { NumbersItem } from '@app/types.ts';
 export interface TableItemUiProps {
-  item: ItemType;
+  item: NumbersItem;
   index: number;
   onSelect?: (id: number) => void;
   isSelected: boolean;
