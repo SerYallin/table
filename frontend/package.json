@@ -10,7 +10,7 @@
     "stylelint": "stylelint \"src/**/*.{css,scss}\"",
     "stylelint:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "lint:fix": "eslint --fix .",
-    "preview": "vite preview"
+    "preview": "vite preview --port 10000"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
