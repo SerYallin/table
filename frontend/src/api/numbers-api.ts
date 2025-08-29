@@ -1,12 +1,13 @@
 import { NumbersItem, Operators } from '@app/types.ts';
-const api_url = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:3001/api/';
+
+const apiUrl = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:3001/api/';
 
 export const getNumbers = async (
   page?: number,
   op?: Operators,
   value?: number
 ) => {
-  let url = `${api_url}numbers/${page || 1}`;
+  let url = `${apiUrl}numbers/${page || 1}`;
   if (value) {
     url += op ? `/${op}/${value}` : `/${Operators.EQUAL}/${value}`;
   }
@@ -20,7 +21,7 @@ export const getNumbers = async (
 };
 
 export const getSelectedNumbers = async () => {
-  const url = `${api_url}selected`;
+  const url = `${apiUrl}selected`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
@@ -31,7 +32,7 @@ export const getSelectedNumbers = async () => {
 };
 
 export const getTotal = async (op?: Operators, value?: number) => {
-  let url = `${api_url}total`;
+  let url = `${apiUrl}total`;
   if (value) {
     url += op ? `/${op}/${value}` : `/${Operators.EQUAL}/${value}`;
   }
@@ -46,7 +47,7 @@ export const getTotal = async (op?: Operators, value?: number) => {
 };
 
 export const updateNumbers = async (items: NumbersItem[]) => {
-  const response = await fetch(`${api_url}numbers`, {
+  const response = await fetch(`${apiUrl}numbers`, {
     method: 'PATCH',
     body: JSON.stringify(items),
     headers: {
@@ -61,7 +62,7 @@ export const updateNumbers = async (items: NumbersItem[]) => {
   return { status: 200, message: 'success' };
 };
 export const updateSelected = async (items: number[]) => {
-  const response = await fetch(`${api_url}selected`, {
+  const response = await fetch(`${apiUrl}selected`, {
     method: 'PUT',
     body: JSON.stringify(items),
     headers: {

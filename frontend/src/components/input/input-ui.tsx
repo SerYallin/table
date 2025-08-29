@@ -1,6 +1,6 @@
 import React from 'react';
-import { TInputUiProps } from './types';
 import { Field } from '@components/field';
+import { TInputUiProps } from './types';
 
 export const InputUi: React.FC<TInputUiProps> = ({
   name,

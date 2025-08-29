@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './button.module.scss';
-import { TButtonUiProps } from './types';
 import { clsx } from 'clsx';
+import { TButtonUiProps } from './types';
+import styles from './button.module.scss';
 
 export const ButtonUI: React.FC<TButtonUiProps> = ({
   title,
