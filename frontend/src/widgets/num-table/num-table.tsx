@@ -1,8 +1,8 @@
 import { observer, inject } from 'mobx-react';
 import { useEffect, useRef } from 'react';
 import { NumbersItem } from '@app/types';
-import styles from './num-table.module.scss';
 import { Table } from '@components/table';
+import styles from './num-table.module.scss';
 
 export const NumTable = inject('tableStore')(
   observer(({ tableStore }) => {

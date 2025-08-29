@@ -1,6 +1,6 @@
 import React from 'react';
-import { TSelectUiProps } from './types';
 import { Field } from '@components/field';
+import { TSelectUiProps } from './types';
 
 export const SelectUi: React.FC<TSelectUiProps> = ({
   name,

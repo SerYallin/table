@@ -1,27 +1,26 @@
-import React, { useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { NumbersItem } from '@app/types';
 import type { TTableProps } from './types';
 import { TableUi } from './table-ui';
 
-export const Table: React.FC<TTableProps> = ({
-  items,
-  updateItems,
-  ...rest
-}) => {
+export const Table: FC<TTableProps> = ({ items, updateItems, ...rest }) => {
   // положение курсора для перетаскивания
-  const [yPos, setYPos] = React.useState(0);
+  const [yPos, setYPos] = useState(0);
   // индекс элемента, на который мы перемещаем
-  const [newIndex, setNewIndex] = React.useState(0);
+  const [newIndex, setNewIndex] = useState(0);
   // элемент, который мы перетаскиваем
-  const [drugIndex, setDrugIndex] = React.useState(0);
+  const [drugIndex, setDrugIndex] = useState(0);
   // флаг, что мы перетаскиваем элемент
-  const [isDrug, setIsDrug] = React.useState(false);
+  const [isDrug, setIsDrug] = useState(false);
   // флаг, для обновления итоговых перестроений (ref - во избежание ререндига)
-  const doUpdate = React.useRef<boolean>(false);
-  const refLi = React.useRef<HTMLLIElement>(null);
-  const refUl = React.useRef<HTMLUListElement>(null);
+  const doUpdate = useRef<boolean>(false);
+  const refLi = useRef<HTMLLIElement>(null);
+  const refUl = useRef<HTMLUListElement>(null);
   const onMouseDown = useCallback(
     (e: MouseEvent) => {
+      if (!refUl.current || !refUl.current?.contains(e.target as Node)) {
+        return;
+      }
       setYPos(e.clientY);
       setIsDrug(true);
       if (e.target instanceof HTMLLIElement) {
@@ -43,7 +42,7 @@ export const Table: React.FC<TTableProps> = ({
   );
   const onMouseMove = useCallback(
     (e: MouseEvent) => {
-      if (refLi.current && refUl.current) {
+      if (refLi.current && refUl.current && isDrug) {
         refLi.current.style.pointerEvents = 'none';
         const height = refLi.current.offsetHeight;
         const x = e.clientX;
@@ -69,6 +68,9 @@ export const Table: React.FC<TTableProps> = ({
     [isDrug]
   );
   const onMouseUp = useCallback(() => {
+    if (!isDrug) {
+      return;
+    }
     setIsDrug(false);
     if (refLi.current) {
       refLi.current.style.pointerEvents = 'auto';

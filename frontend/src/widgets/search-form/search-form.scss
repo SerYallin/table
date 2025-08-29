@@ -1,19 +1,22 @@
 @use '@styles/variables' as *;
+
 fieldset {
   display: grid;
   grid-template-columns: 1fr 13fr 2fr;
-  border: none;
-  background-color: $white;
   margin: 0 0 16px;
-  border-radius: 8px 8px 0 0;
   padding: 16px;
+  background-color: $white;
+  border: none;
+  border-radius: 8px 8px 0 0;
+
   input, select, button {
     border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   }
+
   select {
-    background-color: transparent;
     width: 100%;
+    background-color: transparent;
   }
 
 

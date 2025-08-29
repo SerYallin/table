@@ -1,4 +1,5 @@
-import { NumbersItem } from '@app/types.ts';
+import { NumbersItem } from '@app/types';
+
 export interface TableItemUiProps {
   item: NumbersItem;
   index: number;

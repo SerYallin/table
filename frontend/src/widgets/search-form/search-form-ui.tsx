@@ -3,11 +3,11 @@ import { Button } from '@components/button';
 import { Input } from '@components/input';
 import { Select } from '@components/select';
 import { Operators } from '@app/types';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { SearchFormProps } from './types';
 import './search-form.scss';
 
-export const SearchFormUi: FC<SearchFormProps> = memo(({ onSubmit }) => {
+export const SearchFormUi: FC<SearchFormProps> = ({ onSubmit }) => {
   return (
     <Form onSubmit={onSubmit}>
       <Select
@@ -23,4 +23,4 @@ export const SearchFormUi: FC<SearchFormProps> = memo(({ onSubmit }) => {
       <Button title="Search" htmlType="submit" />
     </Form>
   );
-});
+};
