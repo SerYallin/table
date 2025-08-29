@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import 'dotenv/config';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,5 +25,8 @@ export default defineConfig({
     modules: {
       localsConvention: 'camelCaseOnly',
     },
+  },
+  server: {
+    port: parseInt(process.env.VITE_PORT ?? '3000') || 3000,
   },
 });
