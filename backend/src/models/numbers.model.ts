@@ -8,7 +8,7 @@ class NumbersModel {
   protected readonly limit: number = 20;
 
   constructor() {
-    this.items = getRandoms(1000);
+    this.items = getRandoms(1000000);
     this.selected = [];
   }
 
