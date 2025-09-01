@@ -45,3 +45,10 @@
 **Frontend** - `Vite + Node + TypeScript + React`
 
 **Backend** - `Node + Express`
+
+### Ссылки
+
+ - [Фронтент](https://table-front-six.vercel.app/)
+ - [Бекенд numbers](https://table-navy-seven.vercel.app/api/numbers)
+ - [Бекенд numbers page 2](https://table-navy-seven.vercel.app/api/numbers/2)
+ - [Бекенд numbers page 1 with eq = 22](https://table-navy-seven.vercel.app/api/numbers/1/eq/22)
