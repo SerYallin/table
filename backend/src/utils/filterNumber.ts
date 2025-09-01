@@ -6,7 +6,7 @@ export const filterNumber = (arr: NumbersItem, op: Operators, value: number): bo
   }
   switch (op) {
     case Operators.EQUAL:
-      return arr.value === value;
+      return arr.value.toString().includes(value.toString());
     case Operators.NOT_EQUAL:
       return arr.value !== value;
     case Operators.LESS_THAN:
